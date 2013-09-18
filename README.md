@@ -1,4 +1,6 @@
-# Coffee Merge
+# Scrunch
+
+Like browserify, but just for coffee-script.
 
 1. Get initial file (e.g. index.coffee)
 2. Scan file for `require './some_file'`

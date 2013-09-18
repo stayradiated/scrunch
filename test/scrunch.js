@@ -4,19 +4,10 @@ var scrunch = require('../lib/scrunch');
 
 describe('scrunch', function () {
   
-    it('should work', function(done) {
+    it('should work', function() {
 
-      scrunch(__dirname + '/test.coffee', __dirname + '/out.coffee', function() {
-
-        exec('coffee test/out.coffee', function(stderr, stdout) {
-          if (stderr) {
-            console.log(stderr);
-          }
-          console.log(stdout);
-          done();
-        });
-
-      });
+      var data = scrunch(__dirname + '/test.coffee');
+      console.log(data);
 
     });
 

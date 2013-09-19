@@ -27,7 +27,8 @@
   },
   "dependencies": {
     "uglify-js": "*",
-    "coffee-script": "*"
+    "coffee-script": "*",
+    "lodash": "~2.0.0"
   },
   "bin": {
     "scrunch": "./bin/scrunch.js"

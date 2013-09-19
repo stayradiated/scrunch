@@ -1,3 +1,2 @@
-
 b = require './b'
 b()

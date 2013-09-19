@@ -1,2 +1,3 @@
 b = require './b'
-b()
+module.exports = ->
+  b()

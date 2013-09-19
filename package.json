@@ -28,5 +28,8 @@
   "dependencies": {
     "uglify-js": "*",
     "coffee-script": "*"
+  },
+  "bin": {
+    "scrunch": "./bin/scrunch.js"
   }
 }

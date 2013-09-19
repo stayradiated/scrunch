@@ -1,6 +1,6 @@
 {
-  "name": "scrunch",
-  "version": "0.0.1",
+  "name": "coffee-scrunch",
+  "version": "0.0.2",
   "description": "Merge coffee-script files using require()",
   "main": "lib/scrunch.js",
   "directories": {

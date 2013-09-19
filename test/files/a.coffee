@@ -1,0 +1,3 @@
+
+b = require './b'
+b()

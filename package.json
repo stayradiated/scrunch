@@ -1,0 +1,32 @@
+{
+  "name": "scrunch",
+  "version": "0.0.1",
+  "description": "Merge coffee-script files using require()",
+  "main": "lib/scrunch.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/scrunch.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stayradiated/scrunch.git"
+  },
+  "keywords": [
+    "merge",
+    "concatenate",
+    "join",
+    "coffee",
+    "script"
+  ],
+  "author": "George Czabania",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/stayradiated/scrunch/issues"
+  },
+  "dependencies": {
+    "uglify-js": "*",
+    "coffee-script": "*"
+  }
+}

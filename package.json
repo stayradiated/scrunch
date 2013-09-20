@@ -26,7 +26,6 @@
     "url": "https://github.com/stayradiated/scrunch/issues"
   },
   "dependencies": {
-    "uglify-js": "~2.3.6",
     "coffee-script": "~1.6.3",
     "lodash": "~2.0.0"
   },

@@ -30,7 +30,7 @@
      */
 
     compile = function (options) {
-        var scrunch = new Scrunch(options.fileIn);
+        var scrunch = new Scrunch(options.fileIn, options.verbose);
         scrunch.compile(options);
         if (options.fileOut) {
             fs.writeFile(options.fileOut, scrunch.output, options.fn);
@@ -41,17 +41,20 @@
 
     if (process.argv.length < 3) {
 
-        console.log('Usage: scrunch file [--minify] [[--watch] --out file]');
+        console.log('Usage: scrunch file [--log] [--compile] [[--watch] --out file]');
 
     } else {
-
 
         options = {
             fileIn: process.argv[2]
         };
 
-        if (process.argv.indexOf('--minify') > -1) {
-            options.minify = true;
+        if (process.argv.indexOf('--log') > -1) {
+            options.verbose = true;
+        }
+
+        if (process.argv.indexOf('--compile') > -1) {
+            options.compile = true;
         }
 
         if (process.argv.indexOf('--watch') > -1) {
@@ -65,7 +68,7 @@
         } else if (options.watch) {
             console.log('[error] You must specify an output file to use --watch');
         } else {
-            console.log(compile(options));
+            console.log('\n' + compile(options));
         }
 
         if (options.watch && options.fileOut) {

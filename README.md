@@ -29,7 +29,7 @@ module.exports = ->
 ```
 
 ```
-scrunch a.coffee --out app.coffee
+$ scrunch a.coffee --out app.coffee
 ```
 
 ```coffeescript
@@ -76,7 +76,6 @@ scrunch a.coffee --out app.coffee
   [
     # /home/admin/project/c.coffee
     {
-      './a': 0
     },
     (require, module, exports) ->
       # c.coffee

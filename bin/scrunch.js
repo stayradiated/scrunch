@@ -1,74 +1,82 @@
 #!/bin/node
 
-var Scrunch = require('../lib/scrunch');
-var lodash = require('lodash');
-var utils = require('../lib/utils');
-var fs = require('fs');
+(function () {
 
-/**
- * Watch a folder
- */
+    "use strict";
 
-watchFile = function (path, fn) {
-    var callback, listener;
-    callback = lodash.debounce(fn, 500);
-    listener = fs.watch(path);
-    listener.on('change', function (event, filename) {
-        callback(filename);
-    });
-};
+    var Scrunch, lodash, utils, fs,
+        options, fileOut, watchFile, compile, folderName;
 
-/**
- * Init function
- */
+    Scrunch = require('../lib/scrunch');
+    lodash = require('lodash');
+    utils = require('../lib/utils');
+    fs = require('fs');
 
-compile = function (options) {
-    var scrunch = new Scrunch(options.fileIn);
-    scrunch.compile(options);
-    if (options.fileOut) {
-      fs.writeFile(options.fileOut, scrunch.output, options.fn);
-    }
-    return scrunch.output;
-};
+    /**
+     * Watch a folder
+     */
 
-
-if (process.argv.length < 3) {
-
-    console.log('Usage: scrunch file [--minify] [[--watch] --out file]');
-
-} else {
-
-
-    var options = {
-        fileIn: process.argv[2]
+    watchFile = function (path, fn) {
+        var callback, listener;
+        callback = lodash.debounce(fn, 500);
+        listener = fs.watch(path);
+        listener.on('change', function (event, filename) {
+            callback(filename);
+        });
     };
 
-    if (process.argv.indexOf('--minify') > -1) {
-        options.minify = true;
-    }
+    /**
+     * Init function
+     */
 
-    if (process.argv.indexOf('--watch') > -1) {
-        options.watch = true;
-    }
+    compile = function (options) {
+        var scrunch = new Scrunch(options.fileIn);
+        scrunch.compile(options);
+        if (options.fileOut) {
+            fs.writeFile(options.fileOut, scrunch.output, options.fn);
+        }
+        return scrunch.output;
+    };
 
-    fileOut = process.argv.indexOf('--out');
-    if (fileOut > -1) {
-        options.fileOut = process.argv[fileOut + 1];
-        compile(options);
-    } else if (options.watch) {
-        console.log('[error] You must specify an output file to use --watch');
+
+    if (process.argv.length < 3) {
+
+        console.log('Usage: scrunch file [--minify] [[--watch] --out file]');
+
     } else {
-        console.log(compile(options));
-    }
 
-    if (options.watch && options.fileOut) {
-        var folderName = utils.getFolder(options.fileIn);
-        console.log('\n[watching]', folderName);
-        watchFile(folderName, function(filename) {
-            console.log('\n[watching] Recompiling', filename);
+
+        options = {
+            fileIn: process.argv[2]
+        };
+
+        if (process.argv.indexOf('--minify') > -1) {
+            options.minify = true;
+        }
+
+        if (process.argv.indexOf('--watch') > -1) {
+            options.watch = true;
+        }
+
+        fileOut = process.argv.indexOf('--out');
+        if (fileOut > -1) {
+            options.fileOut = process.argv[fileOut + 1];
             compile(options);
-        });
+        } else if (options.watch) {
+            console.log('[error] You must specify an output file to use --watch');
+        } else {
+            console.log(compile(options));
+        }
+
+        if (options.watch && options.fileOut) {
+            folderName = utils.getFolder(options.fileIn);
+            console.log('\n[watching]', folderName);
+            watchFile(folderName, function (filename) {
+                console.log('\n[watching] Recompiling', filename);
+                compile(options);
+            });
+        }
+
     }
 
-}
-
+}());

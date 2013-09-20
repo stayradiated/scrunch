@@ -55,7 +55,6 @@ $ scrunch a.coffee --out app.coffee
       './b': 1
     },
     (require, module, exports) ->
-      # a.coffee
       b = require './b'
       console.log('running file b')
       b()
@@ -67,7 +66,6 @@ $ scrunch a.coffee --out app.coffee
       './c': 2
     },
     (require, module, exports) ->
-      # b.coffee
       c = require './c'
       module.exports = ->
         console.log('running file c')
@@ -78,7 +76,6 @@ $ scrunch a.coffee --out app.coffee
     {
     },
     (require, module, exports) ->
-      # c.coffee
       module.exports = ->
         console.log('this is file c')
 
@@ -91,4 +88,13 @@ $ coffee app.coffee
 running file b
 running file c
 this is file c
+```
+
+```
+$ scrunch a.coffee --minify --out app.min.js
+```
+
+```javascript
+# app.min.js
+!function(){!function(n){var r,e;return r={},e=function(o){var t;if(null==r[o]){if(null==n[o]){if("undefined"!=typeof require&&null!==require)return require(o);throw new Error("Cannot find module '"+o+"'")}t=r[o]={exports:{}},n[o][1].call(t.exports,function(r){var t;return t=n[o][0][r],e(null!=t?t:r)},t,t.exports)}return r[o].exports},module.exports=e(0)}([[{"./b":1},function(n){var r;return r=n("./b"),console.log("running file b"),r()}],[{"./c":2},function(n,r){var e;return e=n("./c"),r.exports=function(){return console.log("running file c"),e()}}],[{},function(n,r){return r.exports=function(){return console.log("this is file c")}}]])}.call(this);
 ```

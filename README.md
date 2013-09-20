@@ -5,6 +5,14 @@ Assembles coffee-script files.
 It's like browserify, but only for coffee-script and doesn't package npm
 dependencies (like `fs` and `http`).
 
+## Usage
+
+```
+$ sudo npm install -g coffee-scrunch
+$ scrunch
+Usage: scrunch file [--minify] [[--watch] --out file]]
+```
+
 ## Example
 
 ```coffeescript

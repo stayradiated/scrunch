@@ -1,9 +1,8 @@
 # c.coffee
-a = require './a'
-b = require './b'
+
+console.log '[c] ...loaded'
 
 module.exports = ->
-  console.log ('hey')
-
-b()
-a()
+  console.log '[c] ...being run'
+  console.log '[c] requring a...'
+  require './a'

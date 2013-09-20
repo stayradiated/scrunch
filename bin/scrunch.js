@@ -13,8 +13,8 @@ watchFile = function (path, fn) {
     var callback, listener;
     callback = lodash.debounce(fn, 500);
     listener = fs.watch(path);
-    listener.on('change', function (event) {
-        callback();
+    listener.on('change', function (event, filename) {
+        callback(filename);
     });
 };
 
@@ -31,37 +31,44 @@ compile = function (options) {
     return scrunch.output;
 };
 
-fileIn  = process.argv.indexOf('--in');
-fileOut = process.argv.indexOf('--out');
 
-if (fileIn === -1) {
+if (process.argv.length < 3) {
 
-    console.log('Usage: node index.js --in file [--minify] [--out file]');
+    console.log('Usage: scrunch file [--minify] [[--watch] --out file]');
 
 } else {
 
-    fileIn = process.argv[fileIn + 1];
 
     var options = {
-        fileIn: fileIn
+        fileIn: process.argv[2]
     };
 
     if (process.argv.indexOf('--minify') > -1) {
         options.minify = true;
     }
 
+    if (process.argv.indexOf('--watch') > -1) {
+        options.watch = true;
+    }
+
+    fileOut = process.argv.indexOf('--out');
     if (fileOut > -1) {
         options.fileOut = process.argv[fileOut + 1];
         compile(options);
+    } else if (options.watch) {
+        console.log('[error] You must specify an output file to use --watch');
     } else {
         console.log(compile(options));
     }
 
-    console.log('watching for', utils.getFolder(fileIn));
-    watchFile(utils.getFolder(fileIn), function() {
-        console.log('Recompiling file');
-        console.log(compile(options));
-    });
+    if (options.watch && options.fileOut) {
+        var folderName = utils.getFolder(options.fileIn);
+        console.log('\n[watching]', folderName);
+        watchFile(folderName, function(filename) {
+            console.log('\n[watching] Recompiling', filename);
+            compile(options);
+        });
+    }
 
 }
 

@@ -8,15 +8,11 @@ describe('scrunch', function () {
     var input = __dirname + '/files/a.coffee';
   
     it('should create a new instance', function() {
-
         scrunch = new Scrunch(input);
-
     });
-
 
     it('should compile the files', function() {
         output = scrunch.compile();
-
     });
 
     it('should run the output', function() {

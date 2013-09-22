@@ -96,3 +96,16 @@ $ coffee app.coffee
 running file b
 running file c
 this is file c
+```
+
+## Goals
+
+- Have minimal dependencies
+- Be fast
+- Do less but do it better
+- Be mostly jslint compatible
+
+## Things to improve
+
+- Ignore a `require` if the line is commented out
+- Use less synchronus IO methods

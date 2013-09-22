@@ -5,7 +5,7 @@
     "use strict";
 
     var Scrunch, lodash, utils, fs,
-        options, fileOut, watchFile, compile, folderName;
+        options, fileOut, compile, folderName;
 
     Scrunch = require('../lib/scrunch');
     lodash = require('lodash');
@@ -13,29 +13,28 @@
     fs = require('fs');
 
     /**
-     * Watch a folder
-     */
-
-    watchFile = function (path, fn) {
-        var callback, listener;
-        callback = lodash.debounce(fn, 500);
-        listener = fs.watch(path);
-        listener.on('change', function (event, filename) {
-            callback(filename);
-        });
-    };
-
-    /**
      * Init function
      */
 
     compile = function (options) {
-        var scrunch = new Scrunch(options.fileIn, options.verbose);
-        scrunch.compile(options);
-        if (options.fileOut) {
-            fs.writeFile(options.fileOut, scrunch.output, options.fn);
-        }
+        var scrunch = new Scrunch(options);
+
+        scrunch.vent.on('run', function () {
+            scrunch.compile(options);
+        });
+
+        scrunch.vent.on('compile', function (output) {
+            console.log('...compiled');
+            if (options.fileOut) {
+                console.log('writing');
+                fs.writeFile(options.fileOut, output, options.fn);
+            }
+        });
+
+        scrunch.run();
+
         return scrunch.output;
+
     };
 
 
@@ -46,7 +45,7 @@
     } else {
 
         options = {
-            fileIn: process.argv[2]
+            path: process.argv[2]
         };
 
         if (process.argv.indexOf('--log') > -1) {
@@ -69,15 +68,6 @@
             console.log('[error] You must specify an output file to use --watch');
         } else {
             console.log('\n' + compile(options));
-        }
-
-        if (options.watch && options.fileOut) {
-            folderName = utils.getFolder(options.fileIn);
-            console.log('\n[watching]', folderName);
-            watchFile(folderName, function (filename) {
-                console.log('\n[watching] Recompiling', filename);
-                compile(options);
-            });
         }
 
     }

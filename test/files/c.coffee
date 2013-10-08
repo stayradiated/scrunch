@@ -1,5 +1,7 @@
 # c.coffee
 
+console.log require './d.json'
+
 console.log '[c] ...loaded'
 
 module.exports = ->

@@ -1,0 +1,8 @@
+{
+    "string": "this is an example json file",
+    "array": [0,1,2,3],
+    "number": 10,
+    "object": {
+        "hello": "world"
+    }
+}

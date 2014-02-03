@@ -117,14 +117,13 @@ $ coffee app.coffee
 [c] ...being run
 ```
 
-## Goals
+## Changelog
 
-- Have minimal dependencies
-- Be fast
-- Do less but do it better
-- Be mostly jslint compatible
+### 0.2.0
 
-## Things to improve
-
-- Ignore a `require` if the line is commented out
-- Use less synchronus IO methods
+- **Breaking:** Rewrite api to be way easier to use
+- Use async IO and promises
+- Clean up code and add more comments
+- Write tests for most things
+- Replace require() calls to keep code size down
+- Use the same require() function as pure-cjs

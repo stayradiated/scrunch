@@ -28,7 +28,7 @@ $ scrunch--help
 ```coffeescript
 # a.coffee
 b = require './b'
-console.log('running file b')
+console.log('[a] running b...')
 b()
 ```
 
@@ -36,14 +36,14 @@ b()
 # b.coffee
 c = require './c'
 module.exports = ->
-    console.log('running file c')
+    console.log('[b] running c...')
     c()
 ```
 
 ```coffeescript
 # c.coffee
 module.exports = ->
-    console.log('this is file c')
+    console.log('[c] ...being run')
 ```
 
 ```

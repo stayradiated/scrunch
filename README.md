@@ -5,7 +5,7 @@ Assembles coffee-script files.
 It's like browserify, but only for coffee-script and doesn't package npm
 dependencies (like `fs` and `http`).
 
-## Usage
+## Command Line Usage
 
 ```
 $ sudo npm install -g coffee-scrunch
@@ -21,6 +21,21 @@ $ scrunch--help
     -i, --in [file]   Input file
     -o, --out [file]  Write to file
 
+```
+
+## API Usage
+
+```javascript
+var scrunch = require('coffee-scrunch');
+var fs = require('fs';)
+
+var options = {
+    input: 'init.coffee'
+};
+
+scrunch(options).then(function (output) {
+    fs.writeFile('app.js', output);
+});
 ```
 
 ## Example

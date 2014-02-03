@@ -24,4 +24,4 @@ scrunch({
   output: program.out
 }).then(function () {
   console.log('finished');
-});
+}).end();

@@ -119,6 +119,11 @@ $ coffee app.coffee
 
 ## Changelog
 
+### 0.2.1
+
+- Fix bug with files being loaded when they don't exist
+- Log errors in bin/scrunch.js
+
 ### 0.2.0
 
 - **Breaking:** Rewrite api to be way easier to use

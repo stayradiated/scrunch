@@ -47,7 +47,7 @@ module.exports = ->
 ```
 
 ```
-$ scrunch a.coffee --out app.coffee
+$ scrunch -i a.coffee -o app.js
 ```
 
 ```coffeescript

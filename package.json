@@ -1,8 +1,8 @@
 {
   "name": "coffee-scrunch",
-  "version": "0.1.5",
-  "description": "Merge coffee-script files using require()",
-  "main": "lib/scrunch.js",
+  "version": "0.2.0",
+  "description": "Concatenate CoffeeScript files with style",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },
@@ -21,15 +21,22 @@
     "script"
   ],
   "author": "George Czabania",
-  "license": "BSD-2-Clause",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/stayradiated/scrunch/issues"
   },
   "dependencies": {
-    "coffee-script": "~1.6.3",
-    "lodash": "~2.0.0"
+    "coffee-script": "1.7.x",
+    "lodash": "2.4.x",
+    "node-watch": "0.3.x",
+    "kew": "~0.3.2",
+    "commander": "~2.1.0"
   },
   "bin": {
     "scrunch": "./bin/scrunch.js"
+  },
+  "devDependencies": {
+    "expect": "0.0.2",
+    "expect.js": "~0.2.0"
   }
 }

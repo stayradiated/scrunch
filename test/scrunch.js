@@ -1,22 +1,26 @@
-var exec = require('child_process').exec;
-var coffee = require('coffee-script');
-var Scrunch = require('../lib/scrunch');
+var scrunch = require('../index');
 
 describe('scrunch', function () {
 
-    var scrunch, output;
-    var input = __dirname + '/files/a.coffee';
-  
-    it('should create a new instance', function() {
-        scrunch = new Scrunch(input);
-    });
+  var options;
 
-    it('should compile the files', function() {
-        output = scrunch.compile();
-    });
+  options = {
+    input: __dirname + '/files/a.coffee'
+    // output: optional file path
+  };
 
-    it('should run the output', function() {
-        coffee.eval(output);
-    });
+  it('should scrunch', function (done) {
+    scrunch(options).then(function (results) {
+      console.log(results);
+      done();
+    }).end();
+  });
+
+  // it('should concat files', function() {
+  //   scrunch(options).then(function (result) {
+  //     // result = { code, map, options }
+  //     console.log(result);
+  //   });
+  // });
 
 });

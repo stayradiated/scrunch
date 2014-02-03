@@ -2,10 +2,9 @@
 
 'use strict';
 
-var scrunch, fs, npmPackage, program;
+var scrunch, npmPackage, program;
 
 scrunch    = require('../index');
-fs         = require('fs');
 npmPackage = require('../package.json');
 program    = require('commander');
 
@@ -21,7 +20,8 @@ if (! program.in || ! program.out) {
 }
 
 scrunch({
-  input: program.in
-}).then(function (data) {
-  fs.writeFile(program.out, data);
+  input: program.in,
+  output: program.out
+}).then(function () {
+  console.log('finished');
 });

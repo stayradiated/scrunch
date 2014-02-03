@@ -5,7 +5,7 @@ var expect, Walk;
 expect = require('expect.js');
 Walk = require('../lib/walk');
 
-describe('Walk', function () {
+describe('walk', function () {
 
   it('should find an npm module path', function (done) {
 

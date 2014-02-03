@@ -27,14 +27,14 @@ $ scrunch--help
 
 ```javascript
 var scrunch = require('coffee-scrunch');
-var fs = require('fs';)
 
 var options = {
-    input: 'init.coffee'
+    input: 'init.coffee',
+    output: 'app.js' // optional
 };
 
-scrunch(options).then(function (output) {
-    fs.writeFile('app.js', output);
+scrunch(options).then(function () {
+    console.log('finished');
 });
 ```
 

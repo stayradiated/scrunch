@@ -9,8 +9,18 @@ dependencies (like `fs` and `http`).
 
 ```
 $ sudo npm install -g coffee-scrunch
-$ scrunch
-Usage: scrunch file [--log] [--compile] [[--watch] --out file]]
+$ scrunch--help
+
+  Usage: scrunch.js [options]
+
+  Options:
+
+    -h, --help        output usage information
+    -V, --version     output the version number
+    -v, --verbose     Detailed logs
+    -i, --in [file]   Input file
+    -o, --out [file]  Write to file
+
 ```
 
 ## Example
@@ -41,61 +51,55 @@ $ scrunch a.coffee --out app.coffee
 ```
 
 ```coffeescript
-# app.coffee
-((files) ->
-  cache = {}
-  req = (id) ->
-    if not cache[id]?
-      if not files[id]?
-        if (require?) then return require(id)
-        throw new Error("Cannot find module '#{ id }'")
-      file = cache[id] = exports: {}
-      files[id][1].call file.exports, ((name) ->
-        realId = files[id][0][name]
-        return req(if realId? then realId else name)
-      ), file, file.exports
-    return cache[id].exports
-  module.exports = req(0)
-)([
-  [
-    # /home/admin/project/a.coffee
-    {
-      './b': 1
-    },
-    (require, module, exports) ->
-      b = require './b'
-      console.log('running file b')
-      b()
-      
-  ]
-  [
-    # /home/admin/project/b.coffee
-    {
-      './c': 2
-    },
-    (require, module, exports) ->
-      c = require './c'
-      module.exports = ->
-        console.log('running file c')
-        c()
-  ]
-  [
-    # /home/admin/project/c.coffee
-    {
-    },
-    (require, module, exports) ->
-      module.exports = ->
-        console.log('this is file c')
+(function() {
+  var _require;
 
-  ]
-])
+  _require = function(index) {
+    var exports, module;
+    module = _require.cache[index];
+    if (!module) {
+      exports = {};
+      module = _require.cache[index] = {
+        id: index,
+        exports: exports
+      };
+      _require.modules[index].call(exports, module, exports);
+    }
+    return module.exports;
+  };
+
+  _require.cache = [];
+
+  _require.modules = [
+    function(module, exports) {
+      var b;
+      b = _require(1);
+      console.log('[a] running b...');
+      return b();
+    }, function(module, exports) {
+      var c;
+      c = _require(2);
+      return module.exports = function() {
+        console.log('[b] running c...');
+        return c();
+      };
+    }, function(module, exports) {
+      return module.exports = function() {
+        return console.log('[c] ...being run');
+      };
+    }
+  ];
+
+  _require(0);
+
+}).call(this);
 ```
 
 ```
 $ coffee app.coffee
-running file b
-running file c
-this is file c
+[a] running b...
+[b] running c...
+[c] ...being run
 ```
 
 ## Goals

@@ -1,10 +1,10 @@
 
-var Q, expect, scrunch, fs;
+var Promise, expect, scrunch, fs;
 
-expect = require('expect.js');
-Q = require('kew');
+expect  = require('expect.js');
+Promise = require('bluebird');
 scrunch = require('../index');
-fs = require('../lib/fs');
+fs      = require('../lib/fs');
 
 describe('scrunch', function () {
 
@@ -16,15 +16,15 @@ describe('scrunch', function () {
 
   it('should scrunch', function (done) {
 
-    Q.all([
+    Promise.all([
       scrunch(options),
-      fs.readFile(__dirname + '/files/out.js', {
+      fs.readFileAsync(__dirname + '/files/out.js', {
         encoding: 'utf-8'
       })
-    ]).then(function (result) {
-      expect(result[0]).to.equal(result[1]);
+    ]).spread(function (actual, expected) {
+      expect(actual).to.equal(expected);
       done();
-    }).end();
+    }).done();
 
   });
 

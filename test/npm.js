@@ -18,7 +18,7 @@ describe('npm', function () {
       expect(results.source).to.equal(source);
       expect(results.path).to.match(/scrunch\/node_modules\/expect\.js\/expect\.js$/);
       done();
-    }).end();
+    }).done();
 
   });
 
@@ -26,14 +26,14 @@ describe('npm', function () {
 
     var source = __dirname + '/files/c.coffee';
 
-    npm(source, 'kew').then(function (results) {
+    npm(source, 'lodash').then(function (results) {
       expect(results.found).to.equal(true);
-      expect(results.name).to.equal('kew');
+      expect(results.name).to.equal('lodash');
       expect(results.type).to.equal('npm');
       expect(results.source).to.equal(source);
-      expect(results.path).to.match(/scrunch\/node_modules\/kew\/kew\.js$/);
+      expect(results.path).to.match(/scrunch\/node_modules\/lodash\/dist\/lodash\.js$/);
       done();
-    }).end();
+    }).done();
 
   });
 
@@ -48,7 +48,7 @@ describe('npm', function () {
       expect(results.source).to.equal(source);
       expect(results.path).to.match(/scrunch\/node_modules\/lodash\/lodash\.js$/);
       done();
-    }).end();
+    }).done();
 
   });
 
@@ -63,7 +63,7 @@ describe('npm', function () {
       expect(results.source).to.equal(source);
       expect(results.path).to.equal(undefined);
       done();
-    }).end();
+    }).done();
 
   });
 
@@ -78,7 +78,7 @@ describe('npm', function () {
       expect(results.source).to.equal(source);
       expect(results.path).to.match(/scrunch\/test\/files\/a\.coffee$/);
       done();
-    }).end();
+    }).done();
 
   });
 
@@ -93,7 +93,7 @@ describe('npm', function () {
       expect(results.source).to.equal(source);
       expect(results.path).to.match(/scrunch\/test\/missing$/);
       done();
-    }).end();
+    }).done();
   });
 
 });

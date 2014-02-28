@@ -1,13 +1,18 @@
 {
   "name": "coffee-scrunch",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Concatenate CoffeeScript files with style",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
+  "author": "George Czabania",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stayradiated/scrunch/issues"
   },
+  "main": "index.js",
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha -R spec --bail"
+  },
+  "bin": {
+    "scrunch": "./bin/scrunch.js"
   },
   "repository": {
     "type": "git",
@@ -18,25 +23,16 @@
     "concatenate",
     "join",
     "coffee",
-    "script"
+    "coffee-script"
   ],
-  "author": "George Czabania",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/stayradiated/scrunch/issues"
-  },
   "dependencies": {
     "coffee-script": "1.7.x",
     "lodash": "2.4.x",
-    "node-watch": "0.3.x",
-    "kew": "~0.3.2",
-    "commander": "~2.1.0"
-  },
-  "bin": {
-    "scrunch": "./bin/scrunch.js"
+    "commander": "2.1.x",
+    "bluebird": "1.0.x",
+    "log_": "0.0.x"
   },
   "devDependencies": {
-    "expect": "0.0.2",
-    "expect.js": "~0.2.0"
+    "expect.js": "0.2.x"
   }
 }

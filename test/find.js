@@ -13,10 +13,10 @@ describe('find', function () {
 
     find(filepath).then(function (results) {
       expect(results.found).to.equal(true);
-      expect(results.extension).to.equal('coffee')
+      expect(results.extension).to.equal('coffee');
       expect(results.fullpath).to.match(/scrunch\/test\/files\/a\.coffee$/);
       done();
-    });
+    }).done();
 
   });
 
@@ -26,10 +26,10 @@ describe('find', function () {
 
     find(filepath).then(function (results) {
       expect(results.found).to.equal(true);
-      expect(results.extension).to.equal('js')
+      expect(results.extension).to.equal('js');
       expect(results.fullpath).to.match(/scrunch\/test\/find.js$/);
       done();
-    });
+    }).done();
 
   });
 
@@ -39,10 +39,10 @@ describe('find', function () {
 
     find(filepath).then(function (results) {
       expect(results.found).to.equal(true);
-      expect(results.extension).to.equal('json')
+      expect(results.extension).to.equal('json');
       expect(results.fullpath).to.match(/scrunch\/test\/files\/d.json$/);
-      done()
-    });
+      done();
+    }).done();
 
   });
 
@@ -52,10 +52,10 @@ describe('find', function () {
 
     find(filepath).then(function (results) {
       expect(results.found).to.equal(false);
-      expect(results.extension).to.equal(null)
+      expect(results.extension).to.equal(null);
       expect(results.fullpath).to.match(/scrunch\/test\/i_do_not_exist$/);
       done();
-    });
+    }).done();
 
   });
 

@@ -30,7 +30,8 @@ var scrunch = require('coffee-scrunch');
 
 var options = {
     input: 'init.coffee',
-    output: 'app.js' // optional
+    output: 'app.js', // optional
+    log: false // optional
 };
 
 scrunch(options).then(function () {
@@ -118,6 +119,11 @@ $ coffee app.coffee
 ```
 
 ## Changelog
+
+### 0.2.2
+
+- Add support for `options.log`. If set, it will log what it is doing. Useful for debugging.
+- Switch from `kew` to `bluebird` for promises.
 
 ### 0.2.1
 

@@ -11,19 +11,19 @@ describe('walk', function () {
 
     var walk = new Walk('.', 'expect.js');
     walk.start().then(function (result) {
-      expect(result).to.match(/scrunch\/node_modules\/expect\.js$/)
+      expect(result).to.match(/scrunch\/node_modules\/expect\.js$/);
       done();
-    }).end();
+    }).done();
 
   });
 
   it('should fail when it cannot find a module path', function (done) {
 
     var walk = new Walk('.', 'i_do_no_exist');
-    walk.start().fail(function (err) {
+    walk.start().catch(function (err) {
       expect(err).to.equal('err_no_module');
       done();
-    }).end();
+    }).done();
 
   });
 

@@ -15,13 +15,16 @@ program
   .option('-o, --out [file]', 'Write to file')
   .parse(process.argv);
 
-if (! program.in || ! program.out) {
+if (! program.in) {
   return console.log('Must specify input and output files');
 }
 
 scrunch({
   input: program.in,
-  output: program.out
-}).then(function () {
-  console.log('finished');
-}).end();
+  output: program.out,
+  log: program.verbose
+}).then(function (output) {
+  if (! program.out) {
+    console.log(output);
+  }
+}).done();

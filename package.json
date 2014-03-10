@@ -1,6 +1,6 @@
 {
   "name": "coffee-scrunch",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Concatenate CoffeeScript files with style",
   "author": "George Czabania",
   "license": "MIT",

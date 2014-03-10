@@ -120,6 +120,10 @@ $ coffee app.coffee
 
 ## Changelog
 
+### 0.2.4
+
+- Use a simpler regex for getting the require()d path
+
 ### 0.2.3
 
 - Use Substacks `node-resolve` to resolve dependencies.

@@ -10,21 +10,24 @@ program    = require('commander');
 
 program
   .version(npmPackage.version)
-  .option('-v, --verbose', 'Detailed logs')
-  .option('-i, --in [file]', 'Input file')
-  .option('-o, --out [file]', 'Write to file')
-  .parse(process.argv);
+  .option('-v, --verbose', 'Detailed logs');
 
-if (! program.in) {
-  return console.log('Must specify input and output files');
+program
+  .command('*')
+  .description('scrunch [in] [out]')
+  .action(function (fileIn, fileOut) {
+    scrunch({
+      input: fileIn,
+      output: typeof(fileOut) === 'string' ? fileOut : undefined,
+      log: program.verbose
+    }).then(function (output) {
+      if (output) console.log(output);
+    }).done();
+  });
+
+program.parse(process.argv);
+
+if (! program.args.length) {
+  program.help();
 }
 
-scrunch({
-  input: program.in,
-  output: program.out,
-  log: program.verbose
-}).then(function (output) {
-  if (! program.out) {
-    console.log(output);
-  }
-}).done();

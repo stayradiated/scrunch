@@ -120,6 +120,10 @@ $ coffee app.coffee
 
 ## Changelog
 
+### 0.2.3
+
+- Use Substacks `node-resolve` to resolve dependencies.
+
 ### 0.2.2
 
 - Add support for `options.log`. If set, it will log what it is doing. Useful for debugging.
